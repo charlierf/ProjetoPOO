@@ -1,5 +1,9 @@
 package bcb.contas;
 
+import bcb.bancos.Agencia;
+import bcb.bancos.Banco;
+import bcb.pessoas.Cliente;
+
 public abstract class Conta {
     
     private String codigo;
@@ -10,7 +14,7 @@ public abstract class Conta {
     
     private Cliente cliente;
     
-    protected int saldoConta;
+    protected int saldo;
     
     private String [] chavePix = new String[5];
 
@@ -48,12 +52,12 @@ public abstract class Conta {
         this.cliente = cliente;
     }
 
-    public int getSaldoConta() {
-        return saldoConta;
+    public int getSaldo() {
+        return saldo;
     }
 
-    public void setSaldoConta(int saldoConta) {
-        this.saldoConta = saldoConta;
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
     }
 
     public String[] getChavePix() {
@@ -65,51 +69,24 @@ public abstract class Conta {
     }
 
     public void depositarValor(int x){
-        this.saldoConta += x;
+        this.saldo += x;
     }
 
     public abstract void sacarValor(int x);
 
     public abstract void obterExtrato();
 
-    public abstract void pix(String chave, int valor);
-
-    public void gerarPixEmail(){
-        int j = 0;
-        for (int i = 0; !this.chavePix[i].isEmpty() && i <= chavePix.length; i++) {
-            j = i;
-        }
-        if (j != 6){   
-        this.chavePix[j] = this.cliente.getEmail();
-        }
-        }
-    }
-
-    public void gerarPixTelefone(){
-        int j = 0;
-        for (int i = 0; !this.chavePix[i].isEmpty() && i < chavePix.length; i++) {
-            j = i;
-        }
-        if (j != 6){   
-            this.chavePix[j] = this.cliente.getTelefone();
-            }
-        }
-
-        public Conta(String codigo, Banco banco, Agencia agencia, Cliente cliente, int saldoConta, String[] chavePix) {
+    public Conta(String codigo, Banco banco, Agencia agencia, Cliente cliente, int saldo, String[] chavePix) {
             this.codigo = codigo;
             this.banco = banco;
             this.agencia = agencia;
             this.cliente = cliente;
-            this.saldoConta = saldoConta;
+            this.saldo = saldo;
             this.chavePix = chavePix;
         }
-    }
-
-
-
-    
+} 
     
 
     
 
-}
+
