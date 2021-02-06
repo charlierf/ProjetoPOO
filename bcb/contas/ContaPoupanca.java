@@ -1,7 +1,10 @@
 package bcb.contas;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import bcb.bancos.Agencia;
+import bcb.bancos.Banco;
+import bcb.pessoas.Cliente;
 
 public class ContaPoupanca extends Conta {
 
@@ -26,32 +29,24 @@ public class ContaPoupanca extends Conta {
     }
 
     public void aplicarRendimento(){
-        super.saldo += super.saldo * this.taxaRendimento;
+        this.saldo += this.saldo * this.taxaRendimento;
     }
     
     @Override
     public void sacarValor(int x) {        
-        if (super.saldo > x){
-            super.saldo -= x;
+        if (this.saldo > x){
+            this.saldo -= x;
+            this.datas.add(this.data);
+            this.operacoes.add("    SAQUE ");
+            this.valores.add(x);
+            this.saldos.add(this.saldo);
         } else {
             System.out.println("Saldo insuficiente!");
         }
     }
 
     
-
-    @Override
-    public void obterExtrato() {
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/aaaa");
-
-        System.out.println("### Extrato da Conta ###");
-        Date date = new Date();
-        System.out.println("Saldo: " + this.getSaldo());
-        System.out.println("Data: " + sdf.format(date));
-
-    }
-
+   
     public ContaPoupanca() {
     }
 

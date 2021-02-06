@@ -1,8 +1,8 @@
 package bcb.contas;
 
-import java.util.Date;
-
-import java.text.SimpleDateFormat;
+import bcb.bancos.Agencia;
+import bcb.bancos.Banco;
+import bcb.pessoas.Cliente;
 
 public class ContaCorrente extends Conta {
 
@@ -25,31 +25,30 @@ public class ContaCorrente extends Conta {
     public void setChequeEspecial(int chequeEspecial) {
         this.chequeEspecial = chequeEspecial;
     }
-    
+
     @Override
     public void sacarValor(int x) {
-         if (super.saldo > x){
+        if (super.saldo > x) {
             super.saldo -= x;
-         } else {
-             if ((super.saldo + this.chequeEspecial) > x){
-                 this.chequeEspecial -= (x - super.saldo);
-                 super.saldo = 0;
-             } else {
-                 System.out.println("Saldo insuficiente e não há limite no cheque especial!");
-             }
-         }
-    }
-    
-    @Override
-    public void obterExtrato() {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            this.datas.add(this.data);
+            this.operacoes.add("    SAQUE ");
+            this.valores.add(x);
+            this.saldos.add(this.saldo);
 
-        System.out.println("### Extrato da Conta ###");
-        Date date = new Date();
-        System.out.println("Saldo: " + this.getSaldo());
-        System.out.println("Data: " + sdf.format(date));
+        } else {
+            if ((super.saldo + this.chequeEspecial) > x) {
+                this.chequeEspecial -= (x - super.saldo);
+                super.saldo -= x;
 
+                this.datas.add(this.data);
+                this.operacoes.add("    SAQUE ");
+                this.valores.add(x);
+                this.saldos.add(this.saldo);
+            } else {
+                System.out.println("Saldo insuficiente e não há limite no cheque especial!");
+            }
+        }
     }
 
     public ContaCorrente() {}
