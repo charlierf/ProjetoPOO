@@ -18,7 +18,7 @@ public class testeConta {
 
         Conta contaSalario = new ContaSalario();
 
-        Empregador e = new Empregador();
+        Empregador e = new Empregador("Exemplo");
 
         ((ContaSalario) contaSalario).setEmpregador(e);
 
