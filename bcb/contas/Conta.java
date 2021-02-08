@@ -9,6 +9,7 @@ import java.util.List;
 import bcb.bancos.Agencia;
 import bcb.bancos.Banco;
 import bcb.pessoas.Cliente;
+import bcb.utils.Codigo;
 
 public abstract class Conta {
 
@@ -22,7 +23,7 @@ public abstract class Conta {
 
     protected int saldo;
 
-    private String[] chavePix = new String[5];
+    private String[] chavesPix = new String[5];
 
     protected Date data = new Date();
 
@@ -30,7 +31,7 @@ public abstract class Conta {
 
     protected List<String> operacoes = new LinkedList<String>();
 
-    protected List<Integer> valores = new LinkedList<Integer>();
+    protected List<Double> valores = new LinkedList<>();
 
     protected List<Integer> saldos = new LinkedList<Integer>();
 
@@ -86,23 +87,33 @@ public abstract class Conta {
         this.saldo = saldo;
     }
 
-    public String[] getChavePix() {
-        return chavePix;
+    public String[] getChavesPix() {
+        return chavesPix;
     }
 
-    public void setChavePix(String[] chavePix) {
-        this.chavePix = chavePix;
+    public void setChavePix(String chavePix) {
+        int c = 0;
+
+        while (this.chavesPix[c] != null) {
+            c++;
+        }
+
+        this.chavesPix[c] = chavePix;
     }
 
-    public void depositarValor(int x){
-        this.saldo += x;
+    public void setChavesPix(String[] chavesPix) {
+        this.chavesPix = chavesPix;
+    }
+
+    public void depositarValor(double valor) {
+        this.saldo += valor;
         this.datas.add(this.data);
-        this.operacoes.add(" DEPÓSITO ");
-        this.valores.add(x);
+        this.operacoes.add("Transferência");
+        this.valores.add(valor);
         this.saldos.add(this.saldo);
     }
 
-    public abstract void sacarValor(int x);
+    public abstract void sacarValor(double x);
 
     public void obterExtrato(){
 
@@ -124,13 +135,13 @@ public abstract class Conta {
 
     };
 
-    public Conta(String codigo, Banco banco, Agencia agencia, Cliente cliente, int saldo, String[] chavePix) {
-            this.codigo = codigo;
+    public Conta(Banco banco, Agencia agencia, Cliente cliente, int saldo, String[] chavesPix) {
+            this.codigo = Codigo.gerarCodigo();
             this.banco = banco;
             this.agencia = agencia;
             this.cliente = cliente;
             this.saldo = saldo;
-            this.chavePix = chavePix;
+            this.chavesPix = chavesPix;
         }
 } 
     

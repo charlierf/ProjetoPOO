@@ -33,7 +33,7 @@ public class ContaPoupanca extends Conta {
     }
     
     @Override
-    public void sacarValor(int x) {        
+    public void sacarValor(double x) {        
         if (this.saldo > x){
             this.saldo -= x;
             this.datas.add(this.data);
@@ -50,8 +50,8 @@ public class ContaPoupanca extends Conta {
     public ContaPoupanca() {
     }
 
-    public ContaPoupanca(String codigo, Banco banco, Agencia agencia, Cliente cliente, int saldo, String[] chavePix) {
-        super(codigo, banco, agencia, cliente, saldo, chavePix);
+    public ContaPoupanca(Banco banco, Agencia agencia, Cliente cliente, int saldo, String[] chavePix) {
+        super(banco, agencia, cliente, saldo, chavePix);
     }
     
 }

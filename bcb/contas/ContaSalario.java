@@ -24,7 +24,7 @@ public class ContaSalario extends Conta {
     }
 
     @Override
-    public void sacarValor(int x) {
+    public void sacarValor(double x) {
         if (this.saldo > x){
             this.saldo -= x;
             this.datas.add(this.data);

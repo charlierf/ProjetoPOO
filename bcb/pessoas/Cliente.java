@@ -7,6 +7,7 @@ import java.util.List;
 public class Cliente extends Pessoa {
     private String email;
     private String telefone;
+    private Empregador empregador;
     private List<Conta> contas;
 
     public Cliente() {}
@@ -31,6 +32,14 @@ public class Cliente extends Pessoa {
 
     public String getTelefone() {
         return telefone;
+    }
+
+    public void setEmpregador(Empregador empregador) {
+        this.empregador = empregador;
+    }
+
+    public Empregador getEmpregador() {
+        return empregador;
     }
 
     public void setContas(List<Conta> contas) {

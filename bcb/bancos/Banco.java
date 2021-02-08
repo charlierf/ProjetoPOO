@@ -3,6 +3,8 @@ package bcb.bancos;
 import java.util.ArrayList;
 import java.util.List;
 
+import bcb.utils.Codigo;
+
 public class Banco {
     private String codigo;
     private String nome;
@@ -13,7 +15,7 @@ public class Banco {
     public Banco(String nome) {
         List<Agencia> agencias = new ArrayList<>();
 
-        this.setCodigo("fjieofeaoguneo");
+        this.setCodigo(Codigo.gerarCodigo());
         this.setNome(nome);
         this.setAgencias(agencias);
     }
@@ -44,6 +46,15 @@ public class Banco {
 
     public List<Agencia> getAgencias() {
         return agencias;
+    }
+
+    public Agencia getAgencia(String codigo) {
+        for (Agencia agencia : this.agencias) {
+            if (agencia.getCodigo().equals(codigo))
+                return agencia;
+        }
+
+        return null;
     }
 
     public double calculaSaldo() {
