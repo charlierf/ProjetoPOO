@@ -27,7 +27,7 @@ public class ContaCorrente extends Conta {
     }
 
     @Override
-    public void sacarValor(int x) {
+    public void sacarValor(double x) {
         if (super.saldo > x) {
             super.saldo -= x;
 

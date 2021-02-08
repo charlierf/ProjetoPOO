@@ -4,17 +4,18 @@ import bcb.utils.Codigo;
 import bcb.contas.Conta;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
+import java.util.Map;
 
 public class BancoCentral {
     private static List<Banco> bancosCadastrados = new ArrayList<>();
-    private static Set<String> chavesPix = new HashSet<>();
+    private static Map<String, Conta> chavesPix = new HashMap<>();
+    //private static Set<String> chavesPix = new HashSet<>();
 
-    public static void setChavePix(String chavePix) {
-        chavesPix.add(chavePix);
+    public static void setChavePix(String chavePix, Conta conta) {
+        chavesPix.put(chavePix, conta);
     }
 
     public static void setBanco(Banco banco) {
@@ -34,15 +35,6 @@ public class BancoCentral {
         return null;
     }
 
-    public static boolean confereChavePixRepetida(String chavePix) {
-        for (String chave : chavesPix) {
-            if (chave.equals(chavePix))
-                return true;
-        }
-
-        return false;
-    }
-
     public static void cadastrarBanco(String nome) {
         Banco novoBanco = new Banco(nome);
         
@@ -54,26 +46,41 @@ public class BancoCentral {
         String chavePix = "pix-" + uuid;
 
         conta.setChavePix(chavePix);
-        chavesPix.add(chavePix);
+        //chavesPix.add(chavePix);
     }
 
-    public static void gerarPixEmail(Conta conta) {
-        String email = conta.getCliente().getEmail();
+    public static void gerarPixEmail(Conta contaUsuario) {
+        String email = contaUsuario.getCliente().getEmail();
+        Conta conta = chavesPix.get(email);
 
-        if (!chavesPix.contains(email)) {
+        if (conta == null) {
+            chavesPix.put(email, contaUsuario);
+            contaUsuario.setChavePix(email);
+        }
+
+        /* if (!chavesPix.contains(email)) {
             chavesPix.add(email);
             conta.setChavePix(email);
+        } */
+    }
+
+    public static void gerarPixTelefone(Conta contaUsuario) {
+        String telefone = contaUsuario.getCliente().getTelefone();
+        Conta conta = chavesPix.get(telefone);
+
+        if (conta == null) {
+            chavesPix.put(telefone, contaUsuario);
+            contaUsuario.setChavePix(telefone);
         }
     }
 
-    public static void gerarPixTelefone(Conta conta) {
-        String telefone = conta.getCliente().getTelefone();
+    public static void pix(String chaveUsuario, String chaveDestino, double valor) {
+        Conta contaUsuario = chavesPix.get(chaveUsuario);
+        Conta contaDestino = chavesPix.get(chaveDestino);
 
-        if (!chavesPix.contains(telefone)) {
-            chavesPix.add(telefone);
-            conta.setChavePix(telefone);
+        if (contaUsuario != null && contaDestino != null) {
+            contaDestino.depositarValor(valor);
         }
     }
-
-    public static void pix(String chave ) {}
+    
 }

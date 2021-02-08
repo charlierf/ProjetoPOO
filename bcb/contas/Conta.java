@@ -30,7 +30,7 @@ public abstract class Conta {
 
     protected List<String> operacoes = new LinkedList<String>();
 
-    protected List<Integer> valores = new LinkedList<Integer>();
+    protected List<Double> valores = new LinkedList<>();
 
     protected List<Integer> saldos = new LinkedList<Integer>();
 
@@ -101,15 +101,15 @@ public abstract class Conta {
         this.chavesPix = chavesPix;
     }
 
-    public void depositarValor(int x){
-        this.saldo += x;
+    public void depositarValor(double valor) {
+        this.saldo += valor;
         this.datas.add(this.data);
         this.operacoes.add(" DEPÓSITO ");
-        this.valores.add(x);
+        this.valores.add(valor);
         this.saldos.add(this.saldo);
     }
 
-    public abstract void sacarValor(int x);
+    public abstract void sacarValor(double x);
 
     public void obterExtrato(){
 

@@ -93,7 +93,7 @@ public class Dados {
             String chavePix = arq.readLine();
 
             while (chavePix != null) {
-                BancoCentral.setChavePix(chavePix);
+                //BancoCentral.setChavePix(chavePix);
 
                 chavePix = arq.readLine();
             }
