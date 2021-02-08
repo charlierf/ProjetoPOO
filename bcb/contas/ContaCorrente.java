@@ -55,7 +55,7 @@ public class ContaCorrente extends Conta {
 
     public ContaCorrente(String codigo, Banco banco, Agencia agencia, Cliente cliente, int saldo,
             String[] chavePix, int taxaManutencao, int chequeEspecial) {
-        super(codigo, banco, agencia, cliente, saldo, chavePix);
+        super(banco, agencia, cliente, saldo, chavePix);
         this.taxaManutencao = taxaManutencao;
         this.chequeEspecial = chequeEspecial;
     }

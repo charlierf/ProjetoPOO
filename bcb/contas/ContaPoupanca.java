@@ -50,8 +50,8 @@ public class ContaPoupanca extends Conta {
     public ContaPoupanca() {
     }
 
-    public ContaPoupanca(String codigo, Banco banco, Agencia agencia, Cliente cliente, int saldo, String[] chavePix) {
-        super(codigo, banco, agencia, cliente, saldo, chavePix);
+    public ContaPoupanca(Banco banco, Agencia agencia, Cliente cliente, int saldo, String[] chavePix) {
+        super(banco, agencia, cliente, saldo, chavePix);
     }
     
 }

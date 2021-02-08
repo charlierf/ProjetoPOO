@@ -9,6 +9,7 @@ import java.util.List;
 import bcb.bancos.Agencia;
 import bcb.bancos.Banco;
 import bcb.pessoas.Cliente;
+import bcb.utils.Codigo;
 
 public abstract class Conta {
 
@@ -91,10 +92,13 @@ public abstract class Conta {
     }
 
     public void setChavePix(String chavePix) {
-        int total = this.chavesPix.length;
+        int c = 0;
 
-        if (total <= 4)
-            this.chavesPix[total] = chavePix;
+        while (this.chavesPix[c] != null) {
+            c++;
+        }
+
+        this.chavesPix[c] = chavePix;
     }
 
     public void setChavesPix(String[] chavesPix) {
@@ -104,7 +108,7 @@ public abstract class Conta {
     public void depositarValor(double valor) {
         this.saldo += valor;
         this.datas.add(this.data);
-        this.operacoes.add(" DEPÓSITO ");
+        this.operacoes.add("Transferência");
         this.valores.add(valor);
         this.saldos.add(this.saldo);
     }
@@ -131,8 +135,8 @@ public abstract class Conta {
 
     };
 
-    public Conta(String codigo, Banco banco, Agencia agencia, Cliente cliente, int saldo, String[] chavesPix) {
-            this.codigo = codigo;
+    public Conta(Banco banco, Agencia agencia, Cliente cliente, int saldo, String[] chavesPix) {
+            this.codigo = Codigo.gerarCodigo();
             this.banco = banco;
             this.agencia = agencia;
             this.cliente = cliente;

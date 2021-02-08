@@ -4,6 +4,7 @@ import bcb.bancos.Agencia;
 import bcb.bancos.Banco;
 import bcb.bancos.BancoCentral;
 import bcb.contas.Conta;
+import bcb.contas.ContaCorrente;
 import bcb.pessoas.Cliente;
 import bcb.pessoas.Empregador;
 
@@ -87,15 +88,22 @@ public class Dados {
 
     }
 
-    public static void carregarChavesPix() {
+    public static void carregarChavesPix(Conta conta) {
         try {
             BufferedReader arq = abrirLeitura("chavesPix.txt");
-            String chavePix = arq.readLine();
+            String line = arq.readLine();
 
-            while (chavePix != null) {
-                //BancoCentral.setChavePix(chavePix);
+            while (line != null) {
+                StringTokenizer stk = new StringTokenizer(line, ";");
+                String chavePix = stk.nextToken();
+                String codigoConta = stk.nextToken();
 
-                chavePix = arq.readLine();
+                if (codigoConta.equals(conta.getCodigo())) {
+                    conta.setChavePix(chavePix);
+                    BancoCentral.setChavePix(chavePix, conta);
+                }
+
+                line = arq.readLine();
             }
 
             arq.close();
@@ -130,10 +138,18 @@ public class Dados {
     }
     
     public static void main(String[] args) {
-        carregarBancos();
+        /* carregarBancos();
         
         for (Banco banco : BancoCentral.getBancos()) {
             carregarAgencias(banco);
+        } */
+        ContaCorrente conta = new ContaCorrente();
+        conta.setCodigo("fnoeiafoe");
+
+        carregarChavesPix(conta);
+
+        for (String chave : conta.getChavesPix()) {
+            System.out.printf("%s\n", chave);
         }
     }
 }

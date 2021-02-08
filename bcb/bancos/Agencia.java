@@ -13,7 +13,6 @@ public class Agencia {
     private Banco banco;
     private List<Conta> contas;
     private List<Cliente> clientes;
-    //private double saldo;
 
     public Agencia() {}
 
@@ -24,7 +23,6 @@ public class Agencia {
         this.setNome(nome);
         this.setBanco(banco);
         this.setContas(contas);
-        //this.setSaldo(0.0);
     }
 
     public void setCodigo(String codigo) {
@@ -63,17 +61,18 @@ public class Agencia {
         return contas;
     }
 
+    public Conta getConta(String codigo) {
+        for (Conta conta : this.contas) {
+            if (conta.getCodigo().equals(codigo))
+                return conta;
+        }
+
+        return null;
+    }
+
     public void setCliente(Cliente cliente) {
         this.clientes.add(cliente);
     }
-
-    /* public void setSaldo(double saldo) {
-        this.saldo = saldo;
-    }
-
-    public double getSaldo() {
-        return saldo;
-    } */
 
     public double calculaSaldo() {
         double saldoTotal = 0;

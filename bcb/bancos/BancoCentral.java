@@ -2,17 +2,16 @@ package bcb.bancos;
 
 import bcb.utils.Codigo;
 import bcb.contas.Conta;
+import bcb.contas.ContaCorrente;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 import java.util.Map;
 
 public class BancoCentral {
     private static List<Banco> bancosCadastrados = new ArrayList<>();
     private static Map<String, Conta> chavesPix = new HashMap<>();
-    //private static Set<String> chavesPix = new HashSet<>();
 
     public static void setChavePix(String chavePix, Conta conta) {
         chavesPix.put(chavePix, conta);
@@ -42,11 +41,9 @@ public class BancoCentral {
     }
 
     public static void gerarPixAleatorio(Conta conta) {
-        String uuid = UUID.randomUUID().toString();
-        String chavePix = "pix-" + uuid;
+        String chavePix = Codigo.gerarCodigo20Linhas();
 
         conta.setChavePix(chavePix);
-        //chavesPix.add(chavePix);
     }
 
     public static void gerarPixEmail(Conta contaUsuario) {
@@ -57,11 +54,6 @@ public class BancoCentral {
             chavesPix.put(email, contaUsuario);
             contaUsuario.setChavePix(email);
         }
-
-        /* if (!chavesPix.contains(email)) {
-            chavesPix.add(email);
-            conta.setChavePix(email);
-        } */
     }
 
     public static void gerarPixTelefone(Conta contaUsuario) {
@@ -83,4 +75,12 @@ public class BancoCentral {
         }
     }
     
+    public static void main(String[] args) {
+        ContaCorrente conta = new ContaCorrente();
+        
+        gerarPixAleatorio(conta);
+
+        System.out.println(conta.getCodigo());
+        System.out.println(conta.getChavesPix()[0]);
+    }
 }
