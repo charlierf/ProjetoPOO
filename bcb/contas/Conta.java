@@ -22,7 +22,7 @@ public abstract class Conta {
 
     protected int saldo;
 
-    private String[] chavePix = new String[5];
+    private String[] chavesPix = new String[5];
 
     protected Date data = new Date();
 
@@ -86,12 +86,19 @@ public abstract class Conta {
         this.saldo = saldo;
     }
 
-    public String[] getChavePix() {
-        return chavePix;
+    public String[] getChavesPix() {
+        return chavesPix;
     }
 
-    public void setChavePix(String[] chavePix) {
-        this.chavePix = chavePix;
+    public void setChavePix(String chavePix) {
+        int total = this.chavesPix.length;
+
+        if (total <= 4)
+            this.chavesPix[total] = chavePix;
+    }
+
+    public void setChavesPix(String[] chavesPix) {
+        this.chavesPix = chavesPix;
     }
 
     public void depositarValor(int x){
@@ -124,13 +131,13 @@ public abstract class Conta {
 
     };
 
-    public Conta(String codigo, Banco banco, Agencia agencia, Cliente cliente, int saldo, String[] chavePix) {
+    public Conta(String codigo, Banco banco, Agencia agencia, Cliente cliente, int saldo, String[] chavesPix) {
             this.codigo = codigo;
             this.banco = banco;
             this.agencia = agencia;
             this.cliente = cliente;
             this.saldo = saldo;
-            this.chavePix = chavePix;
+            this.chavesPix = chavesPix;
         }
 } 
     

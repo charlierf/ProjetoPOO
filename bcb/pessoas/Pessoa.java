@@ -2,8 +2,8 @@ package bcb.pessoas;
 
 abstract public class Pessoa {
     private String nome;
-    private String email;
-    private String telefone;
+    /* private String email;
+    private String telefone; */
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -13,7 +13,7 @@ abstract public class Pessoa {
         return nome;
     }
 
-    public void setEmail(String email) {
+    /* public void setEmail(String email) {
         this.email = email;
     }
 
@@ -27,5 +27,5 @@ abstract public class Pessoa {
 
     public String getTelefone() {
         return telefone;
-    }
+    } */
 }

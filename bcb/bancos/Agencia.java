@@ -4,24 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bcb.contas.Conta;
+import bcb.pessoas.Cliente;
+import bcb.utils.Codigo;
 
 public class Agencia {
     private String codigo;
     private String nome;
     private Banco banco;
     private List<Conta> contas;
-    private double saldo;
+    private List<Cliente> clientes;
+    //private double saldo;
 
     public Agencia() {}
 
     public Agencia(String nome, Banco banco) {
         List<Conta> contas = new ArrayList<>();
         
-        this.setCodigo("fieoafieofjiaoef");
+        this.setCodigo(Codigo.gerarCodigo());
         this.setNome(nome);
         this.setBanco(banco);
         this.setContas(contas);
-        this.setSaldo(0.0);
+        //this.setSaldo(0.0);
     }
 
     public void setCodigo(String codigo) {
@@ -60,13 +63,17 @@ public class Agencia {
         return contas;
     }
 
-    public void setSaldo(double saldo) {
+    public void setCliente(Cliente cliente) {
+        this.clientes.add(cliente);
+    }
+
+    /* public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 
     public double getSaldo() {
         return saldo;
-    }
+    } */
 
     public double calculaSaldo() {
         double saldoTotal = 0;
