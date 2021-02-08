@@ -7,6 +7,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Tela_Opcoes {
 
@@ -40,8 +42,9 @@ public class Tela_Opcoes {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 449, 294);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -52,6 +55,15 @@ public class Tela_Opcoes {
 		frame.getContentPane().add(lblOpcao);
 		
 		JButton btnExibir_Extrato = new JButton("Exibir Extrato");
+		btnExibir_Extrato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				//Colocar aqui toda parte de código que envolve mostrar o extrato realizado pela pessoa(Todas as operações que ela realizou)
+				
+				
+				
+			}
+		});
 		btnExibir_Extrato.setBackground(UIManager.getColor("inactiveCaptionText"));
 		btnExibir_Extrato.setForeground(UIManager.getColor("inactiveCaptionText"));
 		btnExibir_Extrato.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -59,6 +71,14 @@ public class Tela_Opcoes {
 		frame.getContentPane().add(btnExibir_Extrato);
 		
 		JButton btnRealizar_transferencia = new JButton("Realizar Transfer\u00EAncia");
+		btnRealizar_transferencia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Realizar_Tranferencia window = new Realizar_Tranferencia();
+				window.frame.setVisible(true);
+				
+			}
+		});
 		btnRealizar_transferencia.setForeground(UIManager.getColor("inactiveCaptionText"));
 		btnRealizar_transferencia.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnRealizar_transferencia.setBackground(UIManager.getColor("inactiveCaptionText"));
@@ -66,6 +86,17 @@ public class Tela_Opcoes {
 		frame.getContentPane().add(btnRealizar_transferencia);
 		
 		JButton btnExibir_Saldo = new JButton("Exibir Saldo");
+		btnExibir_Saldo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Exibir_Montantes window = new Exibir_Montantes();
+				window.frame.setVisible(true);
+				
+				//Colocar aqui toda parte de código que envolve a exibição do saldo do usuario
+				
+				
+			}
+		});
 		btnExibir_Saldo.setForeground(UIManager.getColor("inactiveCaptionText"));
 		btnExibir_Saldo.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnExibir_Saldo.setBackground(UIManager.getColor("inactiveCaptionText"));
@@ -73,6 +104,14 @@ public class Tela_Opcoes {
 		frame.getContentPane().add(btnExibir_Saldo);
 		
 		JButton btnGerar_Chave_Pix = new JButton("Gerar Chave Pix");
+		btnGerar_Chave_Pix.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				//Colocar aqui toda parte da chave pix onde a chave é gerada
+				
+				
+			}
+		});
 		btnGerar_Chave_Pix.setForeground(UIManager.getColor("inactiveCaptionText"));
 		btnGerar_Chave_Pix.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnGerar_Chave_Pix.setBackground(UIManager.getColor("inactiveCaptionText"));
@@ -80,6 +119,14 @@ public class Tela_Opcoes {
 		frame.getContentPane().add(btnGerar_Chave_Pix);
 		
 		JButton btnSaque = new JButton("Saque");
+		btnSaque.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Saque window = new Saque();
+				window.frame.setVisible(true);
+				
+			}
+		});
 		btnSaque.setForeground(UIManager.getColor("inactiveCaptionText"));
 		btnSaque.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnSaque.setBackground(UIManager.getColor("inactiveCaptionText"));
@@ -87,6 +134,14 @@ public class Tela_Opcoes {
 		frame.getContentPane().add(btnSaque);
 		
 		JButton btnDeposito = new JButton("Deposito");
+		btnDeposito.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Deposito window = new Deposito();
+				window.frame.setVisible(true);
+				
+			}
+		});
 		btnDeposito.setForeground(UIManager.getColor("inactiveCaptionText"));
 		btnDeposito.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnDeposito.setBackground(UIManager.getColor("inactiveCaptionText"));

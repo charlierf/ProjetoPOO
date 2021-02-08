@@ -46,6 +46,7 @@ public class Tela_Inicial {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -81,8 +82,17 @@ public class Tela_Inicial {
 		btnAvancar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				String agencia = textAgencia.getText().toUpperCase().trim();
+				String conta = textConta.getText().toUpperCase().trim();
+				
+				//int valor = Integer.parseInt(textAgencia.getText());
+				
+				
 				Menu_Opcoes window = new Menu_Opcoes();
 				window.frame.setVisible(true);
+				
+				textAgencia.getText();
+				System.out.println("-> "+textAgencia);
 				
 			}
 		});
